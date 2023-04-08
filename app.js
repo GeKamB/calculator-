@@ -7,6 +7,9 @@ let convertedCalc;
 
 function calculate(button) {
     const value = button.value;
+   
+
+
     
 
     if (button.value === 'clear') {
@@ -14,7 +17,8 @@ function calculate(button) {
         convertedCalc = '';
         display.textContent = convertedCalc;
         
-    } else if (button.value === 'delete') {
+    } 
+     else if (button.value === 'delete') {
         calculation.pop();
         console.log(calculation);
         convertedCalc = convertedCalc.slice(0, -1);
@@ -25,7 +29,7 @@ function calculate(button) {
         calculation = [];
         convertedCalc = '';
         calculation.push(result);
-        convertedCalc = calculation.join('');
+        convertedCalc = calculation.join('');        
         
 
     }
