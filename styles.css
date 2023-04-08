@@ -1,7 +1,7 @@
 html {
     box-sizing: border-box;
     font-size: 1.5em;
-    font-weight: 800;
+    
     font-family: Impact, Haettenschweiler, sans-serif;
       
     
@@ -36,18 +36,21 @@ html {
         background-color: rgb(52, 52, 52);
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-gap: 5px;
+        grid-gap: 15px 10px;
         border: 10px solid black;
+        r
     }
 
     .display {
         width: 380px;
         height: 120px;
-        background-color: rgb(150, 146, 156);
+        background-color: rgb(206, 209, 208);
         grid-column: 1 / -1;
         align-self: center;
         justify-self: center;
         margin-bottom: 15px;
+        font-size: 2rem;
+        padding: 20px;
     }
 
     .equals {
@@ -61,7 +64,7 @@ html {
     .bttn {
         background-color: #f2f2f2;
         border: none;
-        border-radius: 8px;
+        border-radius: 8px;        
         box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2), inset -2px -2px 2px rgba(255, 255, 255, 0.7);
         color: #333;
         font-size: 1.2rem;
@@ -89,7 +92,7 @@ html {
       }
 
 
-      .clear {
+      .red {
         background-color: #ff4d4d;
         border: none;
         border-radius: 8px;
