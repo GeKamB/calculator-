@@ -1,5 +1,9 @@
 html {
-    box-sizing: border-box;    
+    box-sizing: border-box;
+    font-size: 1.5em;
+    font-weight: 800;
+    font-family: Impact, Haettenschweiler, sans-serif;
+      
     
     }
     * {
@@ -50,8 +54,8 @@ html {
         grid-row: span 2;
     }
 
-    #clear {
-        grid-column: span 2;
+    #plus {
+        grid-row: span 2;
     }
 
     .bttn {
