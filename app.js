@@ -90,6 +90,10 @@ function findOperatorIndex(expression) {
         button.disabled = false;
       }
     });
+    buttons.forEach(button => {
+      if (button.classList.contains('operator')) {
+        button.classList.remove('playing'); // remove the playing class from all operator buttons
+   } });
   }
   
   function removeLast() {
@@ -132,6 +136,7 @@ function findOperatorIndex(expression) {
      else {
       // Otherwise, append the operator to the calculation array
       calculation.push(operator);
+      
     }
     // Update the display with the updated calculation
     
@@ -139,29 +144,43 @@ function findOperatorIndex(expression) {
   
 
 
-function handleButtonClick(button) {
-  const value = button.value;
-  switch (value) {
-    case 'clear':
-      clear();
-      break;
-    case 'delete':
-      removeLast();
-      break;
-    case '=':      
-      calculate();
-      break;
-    case '+':
-    case '-':
-    case '*':
-    case '/':
-      addOperator(value);
-      break;
-    default:
-      addDigit(value);
-      break;
+  function handleButtonClick(button) {
+    const value = button.value;
+    switch (value) {
+      case 'clear':
+        
+        clear();
+        
+        break;
+      case 'delete':
+        removeLast();
+        break;
+      case '=':
+        button.classList.add('summ');
+        setTimeout(() => {
+          button.classList.remove('summ'); // remove the 'playing' class after 200ms
+        }, 1200);
+        calculate();
+        buttons.forEach(button => {
+          if (button.classList.contains('operator')) {
+            button.classList.remove('playing'); // remove the playing class from all operator buttons
+          }
+        });
+        break;
+      case '+':
+      case '-':
+      case '*':
+      case '/':
+        addOperator(value);
+        button.classList.add('playing'); // add the playing class to the clicked operator button
+        break;
+      default:
+        addDigit(value);
+        break;
+    }
   }
-}
+  
+
 
 buttons.forEach(button => button.addEventListener('click', () => handleButtonClick(button)));
 

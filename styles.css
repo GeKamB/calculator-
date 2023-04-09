@@ -38,7 +38,7 @@ html {
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 15px 10px;
         border: 10px solid black;
-        r
+        
     }
 
     .display {
@@ -63,7 +63,7 @@ html {
     }
 
     .bttn {
-        background-color: #f2f2f2;
+        background-color: #dbd8d8;
         border: none;
         border-radius: 8px;        
         box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2), inset -2px -2px 2px rgba(255, 255, 255, 0.7);
@@ -76,12 +76,9 @@ html {
         cursor: pointer;
       }
       
-      .bttn:active {
-        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2), inset -1px -1px 1px rgba(255, 255, 255, 0.7);
-        transform: translateY(2px);
-      }
 
-      .numb {
+
+      .operator {
         background-color: rgb(138, 140, 139);
         box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2), inset -2px -2px 2px rgb(48, 47, 48);
         color: whitesmoke;
@@ -110,6 +107,19 @@ html {
       .clear:active {
         box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2), inset -2px -2px 2px #f71414;
         transform: translateY(2px);
+      }
+
+      .playing {
+        background-color: rgb(26, 26, 26);
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2), inset -2px -2px 2px rgb(48, 47, 48);
+        color: rgb(248, 246, 92);
+      }
+      
+
+      .summ {
+        background-color: rgb(26, 26, 26);
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2), inset -2px -2px 2px rgb(48, 47, 48);
+        color: rgb(248, 246, 92);
       }
       
       
