@@ -3,6 +3,38 @@ const buttons = document.querySelectorAll('button');
 const dot = document.querySelector('#dot');
 
 let calculation = [];
+let newCalculation = [];
+
+document.addEventListener('keydown', (event) => {
+  const key = event.key;
+
+  // Check if the key is a digit or a dot
+  if (/[0-9.]/.test(key)) {
+    addDigit(key);
+  }
+
+  // Check if the key is an operator
+  if  (/[-+*/=]/.test(key) || (key === '+' && event.shiftKey)) {
+    addOperator(key);
+  }
+
+  // Check if the key is the Enter key
+  if (key === 'Enter') {
+    calculate();
+  }
+
+  // Check if the key is the Backspace key
+  if (key === 'Backspace') {
+    removeLast();
+  }
+
+  // Check if the key is the Escape key
+  if (key === 'Escape') {
+    clear();
+  }
+});
+
+
 
 function calculate() {
   const expression = calculation.join('');
@@ -12,6 +44,9 @@ function calculate() {
   const var2 = expression.slice(operatorIndex + 1); // Extract the second operand
   const result = evaluate(var1, op, var2); // Evaluate the expression
   displayResult(result);
+  calculation = [result];
+  
+
 }
 
 function evaluate(var1, op, var2) {
@@ -82,27 +117,27 @@ function findOperatorIndex(expression) {
     }
   }
   
+  
   function addOperator(operator) {
-    const lastChar = calculation[calculation.length - 1];
-    if (lastChar && '+-*/'.includes(lastChar)) { // if the last character in the calculation is an operator, replace it with the new operator
-      calculation[calculation.length - 1] = operator;
-    }
-     else {
-      calculation.push(operator); // add the operator to the calculation array
-    }
-    
-    const lastButton = buttons[buttons.length - 2]; // get the second to last button clicked
-    if (lastButton && lastButton.classList.contains('operator')) { // if the second to last button was an operator, calculate the result
+    // If the calculation already contains an operator, replace it with the new operator
+       const lastChar = calculation[calculation.length - 1];
+     if (lastChar && '+-*/'.includes(lastChar)) { // if the last character in the calculation is an operator, replace it with the new operator
+      calculation[calculation.length - 1] = operator;}
+     
+    else if (/[-+*/]/.test(calculation)) {
       calculate();
+      console.log(operator);
+      
+      }
+     else {
+      // Otherwise, append the operator to the calculation array
+      calculation.push(operator);
     }
+    // Update the display with the updated calculation
     
-    const currentOperatorButton = document.querySelector(`button[value="${operator}"]`); // disable the operator button until a new digit is added
-    currentOperatorButton.disabled = true;
-    const digitButtons = document.querySelectorAll('.digit');
-    digitButtons.forEach(digitButton => digitButton.addEventListener('click', () => {
-      currentOperatorButton.disabled = false;
-    }));
   }
+  
+
 
 function handleButtonClick(button) {
   const value = button.value;
@@ -113,7 +148,7 @@ function handleButtonClick(button) {
     case 'delete':
       removeLast();
       break;
-    case '=':
+    case '=':      
       calculate();
       break;
     case '+':
@@ -129,3 +164,4 @@ function handleButtonClick(button) {
 }
 
 buttons.forEach(button => button.addEventListener('click', () => handleButtonClick(button)));
+

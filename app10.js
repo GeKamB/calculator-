@@ -9,7 +9,8 @@ let convertedCalc;
 function calculate(button) {
     const value = button.value;
    
-
+else if (/[-+*/]/.test(calculation)) {
+    calculate()
 
     
 
