@@ -6,17 +6,41 @@ let calculation = [];
 
 function calculate() {
   const expression = calculation.join('');
-  const result = evaluate(expression);
+  const operatorIndex = findOperatorIndex(expression); // Find the index of the operator
+  const var1 = expression.slice(0, operatorIndex); // Extract the first operand
+  const op = expression[operatorIndex]; // Extract the operator
+  const var2 = expression.slice(operatorIndex + 1); // Extract the second operand
+  const result = evaluate(var1, op, var2); // Evaluate the expression
   displayResult(result);
 }
 
-function evaluate(expression) {
-    try {
-      return Function(`"use strict"; return (${expression})`)(); // evaluate the expression using the Function constructor
-    } catch (e) {
-      return ''; // if there is an error, return an empty string
+function evaluate(var1, op, var2) {
+  const num1 = parseFloat(var1);
+  const num2 = parseFloat(var2);
+  switch (op) {
+    case '+':
+      return num1 + num2;
+    case '-':
+      return num1 - num2;
+    case '*':
+      return num1 * num2;
+    case '/':
+      return num1 / num2;
+    default:
+      return '';
+  }
+}
+
+function findOperatorIndex(expression) {
+  const operators = ['+', '-', '*', '/'];
+  for (let i = 0; i < expression.length; i++) {
+    if (operators.includes(expression[i])) {
+      return i;
     }
   }
+  return -1;
+}
+
   
   function displayResult(result) {
     display.textContent = result; // set the text content of the display to the result
